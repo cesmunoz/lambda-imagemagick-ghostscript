@@ -1,0 +1,34 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform: AWS::Serverless-2019-07-23
+Description: >
+  Static build of ImageMagick and Ghostscript for Amazon Linux 2,
+  including convert, mogrify and identify tools
+  and support for pdf, jpeg, gif, png, tiff and webm formats.
+Resources:
+  ImageMagickGhostscriptLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: image-magick-ghostscript
+      Description: Static build of ImageMagick and Ghostscript for AWS Linux 2,
+      ContentUri: build/layer.zip
+      CompatibleRuntimes:
+        - nodejs10.x
+      RetentionPolicy: Retain
+
+Outputs:
+  LayerVersion:
+    Description: Layer ARN Reference
+    Value: !Ref ImageMagickGhostscriptLayer
+
+Metadata:
+  AWS::ServerlessRepo::Application:
+    Name: image-magick-ghostscript-lambda-layer
+    Description: >
+      Static build of ImageMagick and Ghostscript for Amazon Linux 2,
+      packaged as a Lambda layer. 
+
+      Including convert, mogrify and identify tools
+      and support for pdf, jpeg, gif, png, tiff and webm formats.
+    Author: Cesar Munoz
+    Labels: ["layer", "image", "lambda", "imagemagick", "ghostscript"]
+    SemanticVersion: 1.0.0
