@@ -167,4 +167,4 @@ $(TARGET_DIR)/bin/gs: $(GHOST_SCRIPT_SOURCE)
 libs: $(LIBS)
 
 all: $(TARGET_DIR)/bin/identify \
-		$(TARGET_DIR)/bin/identify
+		$(TARGET_DIR)/bin/gs
